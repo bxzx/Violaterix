@@ -707,7 +707,7 @@ do
             end
 
             local function updateMenuSize()
-                local menuWidth = 60
+                local menuWidth = 90
                 for i, label in next, ContextMenu.Inner:GetChildren() do
                     if label:IsA('TextLabel') then
                         menuWidth = math.max(menuWidth, label.TextBounds.X)
@@ -3204,7 +3204,7 @@ function Library:CreateWindow(...)
                 BorderColor3 = Color3.new(0, 0, 0);
                 -- BorderMode = Enum.BorderMode.Inset;
                 Size = UDim2.new(1, -2, 1, -2);
-                Position = UDim2.new(0, 1.5, 0, 1.5);
+                Position = UDim2.new(0, 1, 0, 1);
                 ZIndex = 4;
                 Parent = BoxOuter;
             });
