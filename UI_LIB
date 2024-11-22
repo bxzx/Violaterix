@@ -469,7 +469,7 @@ do
         });
 
         DisplayFrame:GetPropertyChangedSignal('AbsolutePosition'):Connect(function()
-            PickerFrameOuter.Position = UDim2.fromOffset(DisplayFrame.AbsolutePosition.X, DisplayFrame.AbsolutePosition.Y + 18);
+            PickerFrameOuter.Position = UDim2.fromOffset(DisplayFrame.AbsolutePosition.X * 1.5, DisplayFrame.AbsolutePosition.Y + 18);
         end)
 
         local PickerFrameInner = Library:Create('Frame', {
@@ -1056,7 +1056,7 @@ do
 
         local ModeSelectOuter = Library:Create('Frame', {
             BorderColor3 = Color3.new(0, 0, 0);
-            Position = UDim2.fromOffset(ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4, ToggleLabel.AbsolutePosition.Y + 1);
+            Position = UDim2.fromOffset((ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4) * 1.5, ToggleLabel.AbsolutePosition.Y + 1);
             Size = UDim2.new(0, 60, 0, 45 + 2);
             Visible = false;
             ZIndex = 14;
@@ -1064,7 +1064,7 @@ do
         });
 
         ToggleLabel:GetPropertyChangedSignal('AbsolutePosition'):Connect(function()
-            ModeSelectOuter.Position = UDim2.fromOffset(ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4, ToggleLabel.AbsolutePosition.Y + 1);
+            ModeSelectOuter.Position = UDim2.fromOffset((ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4) * 1.5, ToggleLabel.AbsolutePosition.Y + 1);
         end);
 
         local ModeSelectInner = Library:Create('Frame', {
@@ -1989,7 +1989,7 @@ do
         local SliderOuter = Library:Create('Frame', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
-            Size = UDim2.new(1, -4, 0, 13);
+            Size = UDim2.new(1.5, -4, 0, 13);
             ZIndex = 5;
             Parent = Container;
         });
@@ -2071,10 +2071,10 @@ do
                 DisplayLabel.Text = string.format('%s/%s', Slider.Value .. Suffix, Slider.Max .. Suffix);
             end
 
-            local X = math.ceil(Library:MapValue(Slider.Value, Slider.Min, Slider.Max, 0.5, Slider.MaxSize));
+            local X = math.ceil(Library:MapValue(Slider.Value, Slider.Min, Slider.Max, 0, Slider.MaxSize));
             Fill.Size = UDim2.new(0, X, 1, 0);
 
-            HideBorderRight.Visible = not (X == Slider.MaxSize or X == 0.5);
+            HideBorderRight.Visible = not (X == Slider.MaxSize or X == 0);
         end;
 
         function Slider:OnChanged(Func)
@@ -2948,7 +2948,7 @@ function Library:CreateWindow(...)
     if type(Config.MenuFadeTime) ~= 'number' then Config.MenuFadeTime = 0.2 end
 
     if typeof(Config.Position) ~= 'UDim2' then Config.Position = UDim2.fromOffset(175, 50) end
-    if typeof(Config.Size) ~= 'UDim2' then Config.Size = UDim2.fromOffset(825,900) end
+    if typeof(Config.Size) ~= 'UDim2' then Config.Size = UDim2.fromOffset(825, 900) end
 
     if Config.Center then
         Config.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -3035,7 +3035,7 @@ function Library:CreateWindow(...)
     local TabListLayout = Library:Create('UIListLayout', {
         Padding = UDim.new(0, Config.TabPadding);
         FillDirection = Enum.FillDirection.Horizontal;
-        SortOrder = Enum.SortOrder.LayoutOrder; 
+        SortOrder = Enum.SortOrder.LayoutOrder;
         Parent = TabArea;
     });
 
